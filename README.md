@@ -2,11 +2,11 @@
 
 > React app to track IT department tasks and issues
 
-Uses JSON-Server as a mock backend
+Uses JSON-Server [https://github.com/typicode/json-server](https://github.com/typicode/json-server) as a mock backend
 
 Redux.js for State Management
 
-Materialize and Material Icons
+CSS: Materialize and Material Icons
 
 ## Usage
 
