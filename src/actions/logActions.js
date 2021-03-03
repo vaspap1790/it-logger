@@ -1,6 +1,6 @@
-import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG } from './types';
+import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS } from './types';
 
-// GetLogs simpler
+// Get Logs simpler
 // export const getLogs = () => {
 //     return async dispatch => {
 //         setLoading();
@@ -15,7 +15,7 @@ import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CL
 //     };
 // };
 
-// GetLogs refactored, more advanced - thunk lets us return an async function 
+// Get Logs refactored, more advanced - thunk lets us return an async function 
 export const getLogs = () => async dispatch => {
     try {
         setLoading();
@@ -25,6 +25,26 @@ export const getLogs = () => async dispatch => {
     
         dispatch({
             type: GET_LOGS,
+            payload: data
+        });
+    } catch (err) {
+        dispatch({
+            type: LOGS_ERROR,
+            payload: err.response.data
+        });
+    }
+};
+
+// Search Logs 
+export const searchLogs = (text) => async dispatch => {
+    try {
+        setLoading();
+
+        const res = await fetch(`/logs?q=${text}`);
+        const data = await res.json();
+    
+        dispatch({
+            type: SEARCH_LOGS,
             payload: data
         });
     } catch (err) {
