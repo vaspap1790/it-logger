@@ -56,7 +56,8 @@ function logReducer(state = initialState, action) {
             console.error(action.payload);
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                loading: false
             };
         default:
             return state;
